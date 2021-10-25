@@ -5,12 +5,14 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 
+from .forms import *
+
 def register(request):
-    form = UserCreationForm()
+    form = sign_up()
     registered = False
 
     if request.method =="POST":
-        form = UserCreationForm(request.POST)
+        form = sign_up(request.POST)
         if form.is_valid():
             form.save()
             registered = True
